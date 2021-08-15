@@ -3,4 +3,11 @@
 
 # 03 module is most important - inheritance
 - if we want to call methods on generic types - like T.compareTo() or T.trade() - then use type bounds - extends and super
+- in a comparator or comparable, always left arg is compared to right arg
 
+# 04 module is generics on methods
+- only scoped on that method only
+- T is placed before return type
+
+- example:
+public static <T> T min(List<T> values, Comparator<T> comparator) {}
