@@ -1,3 +1,6 @@
-- 01 module is better to go with pdf and source code demo - GenericBuffer class is good
-- 02 module is only about collections - very basic
+# 01 module is better to go with pdf and source code demo - GenericBuffer class is good
+# 02 module is only about collections - very basic
+
+# 03 module is most important - inheritance
+- if we want to call methods on generic types - like T.compareTo() or T.trade() - then use type bounds - extends and super
 
