@@ -11,3 +11,17 @@
 
 - example:
 public static <T> T min(List<T> values, Comparator<T> comparator) {}
+
+# 05 - wildcards
+- example:
+List<? extends Cls>
+List<? super Cls>
+List<?>
+
+- when we want to save all the subclasses of a parent class as a list - can use upperbound - List<? extends Person>
+- below 2 lines of code are equivalent:
+public void saveAll(final List<? extends Person> people)
+public <T extends Person> void saveAll(final List<T> people)
+
+- use ? for methods arguments
+- use T for generic class as T will be needed to declare fields / return value from getters
