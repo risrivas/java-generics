@@ -1,22 +1,42 @@
 # 01 module is better to go with pdf and source code demo - GenericBuffer class is good
 # 02 module is only about collections - very basic
 
+#################
 # 03 module is most important - inheritance
+#################
 - if we want to call methods on generic types - like T.compareTo() or T.trade() - then use type bounds - extends and super
 - in a comparator or comparable, always left arg is compared to right arg
 
+#################
 # 04 module is generics on methods
+#################
 - only scoped on that method only
 - T is placed before return type
 
 - example:
 public static <T> T min(List<T> values, Comparator<T> comparator) {}
 
+#################
 # 05 - wildcards
+#################
+- best explanation:
+https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/4343547#4343547
+
 - example:
-List<? extends Cls>
-List<? super Cls>
-List<?>
+1) List<? extends Cls>
+- only want to read Cls or subclasses of Cls
+- can not write or add anything to the list
+
+2) List<? super Cls>
+- only want to write or add Cls or subclasses of Cls to the list
+- can only read Object but dont know which subclass of Object
+
+3) List<Cls>
+- read and write to the list of type Cls
+
+4) List<?>
+- use <?> instead of <? extends Object>
+
 
 - when we want to save all the subclasses of a parent class as a list - can use upperbound - List<? extends Person>
 - below 2 lines of code are equivalent:
@@ -25,3 +45,20 @@ public <T extends Person> void saveAll(final List<T> people)
 
 - use ? for methods arguments
 - use T for generic class as T will be needed to declare fields / return value from getters
+
+# PECS:
+Remember PECS: "Producer Extends, Consumer Super".
+
+- "Producer Extends" - If you need a List to produce T values (you want to read Ts from the list), you need to declare it with ? extends T, e.g. List<? extends Integer>.
+But you cannot add to this list.
+
+- "Consumer Super" - If you need a List to consume T values (you want to write Ts into the list), you need to declare it with ? super T, e.g. List<? super Integer>.
+But there are no guarantees what type of object you may read from this list.
+
+- If you need to both read from and write to a list, you need to declare it exactly with no wildcards, e.g. List<Integer>.
+
+
+
+
+
+
