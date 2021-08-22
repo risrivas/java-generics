@@ -37,6 +37,11 @@ https://stackoverflow.com/questions/4343202/difference-between-super-t-and-exten
 4) List<?>
 - use <?> instead of <? extends Object>
 
+- example:
+public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+      for (int i = 0; i < src.size(); i++)
+        dest.set(i, src.get(i));
+}
 
 - when we want to save all the subclasses of a parent class as a list - can use upperbound - List<? extends Person>
 - below 2 lines of code are equivalent:
@@ -56,6 +61,37 @@ But you cannot add to this list.
 But there are no guarantees what type of object you may read from this list.
 
 - If you need to both read from and write to a list, you need to declare it exactly with no wildcards, e.g. List<Integer>.
+
+
+###################################
+# 06 - raw types and compatibility
+###################################
+- this will still work
+List<Object> values = new ArrayList();
+values.add("abc");
+values.add(1);
+values.add(new Object());
+
+- we can assign a legacy List to a generic String List
+example:
+List values = new ArrayList();
+values.add("abc");
+values.add("def");
+values.add("ghi");
+
+List<String> strings = values;
+
+- Erasure
+List<String>, List<Integer>, List<List<Integer>> => List
+List<Integer>[] => List[]
+T without bounds => Object
+T extends Foo => Foo
+
+- print bytecode from Intellij terminal
+javap.exe -s -classpath .\build\classes\java\main com.monotonic.generics._6_compatibility.b_erasure.Erasure
+
+- print raw bytecodes:
+javap.exe -s -c -classpath .\build\classes\java\main com.monotonic.generics._6_compatibility.b_erasure.Erasure
 
 
 
