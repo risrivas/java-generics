@@ -22,6 +22,8 @@ public static <T> T min(List<T> values, Comparator<T> comparator) {}
 - best explanation:
 https://stackoverflow.com/questions/4343202/difference-between-super-t-and-extends-t-in-java/4343547#4343547
 
+REWS = Read Extends, Write Super
+
 - example:
 1) List<? extends Cls>
 - only want to read Cls or subclasses of Cls
@@ -93,8 +95,21 @@ javap.exe -s -classpath .\build\classes\java\main com.monotonic.generics._6_comp
 - print raw bytecodes:
 javap.exe -s -c -classpath .\build\classes\java\main com.monotonic.generics._6_compatibility.b_erasure.Erasure
 
+# Overloading
+- as List<String> and List<Integer> gets type erased to List, we can not use to method overload
+example:
+void print(List<String> param) {}
+// void print(List<Integer> param) {}
 
+# instanceOf
+- will not compile:
+obj instanceof InstanceOf<T>
 
-
+# Exception
+- will not compile:
+public class UncompilableException<T> extends Exception
+or
+try{}
+catch(UncompilableException<T> e)
 
 
